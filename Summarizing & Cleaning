@@ -52,7 +52,7 @@ SELECT MIN(rental_duration) AS min_rental_duration,
 	   
 FROM film;
 
-Summary for non- numeric columns in film table
+Summary for non- numeric columns in film table:
 
 SELECT  * FROM film 
 SELECT mode () WITHIN GROUP (ORDER BY title)
