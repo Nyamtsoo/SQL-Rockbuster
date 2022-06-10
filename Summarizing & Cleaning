@@ -1,6 +1,6 @@
 SUMMARIZING AND CLEANING DATA IN SQL
 
-Duplicate data: Film table
+Duplicate data: Film table:
 
 SELECT film_id, title, 
        release_year, 
