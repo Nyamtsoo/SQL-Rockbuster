@@ -1,6 +1,6 @@
-SUMMARIZING AND CLEANING DATA IN SQL
+-- SUMMARIZING AND CLEANING DATA IN SQL
 
-Duplicate data: Film table:
+- Duplicate data: Film table:
 
 SELECT film_id, title, 
        release_year, 
@@ -12,7 +12,7 @@ GROUP BY film_id, title,
 	 rental_duration
 	 HAVING COUNT (*)>1;--no result set means we have no duplicates
 
-Duplicate data: Customer table
+- Duplicate data: Customer table
 
 SELECT customer_id, 
        store_id, 
@@ -30,7 +30,7 @@ GROUP BY customer_id,
          address_id
          HAVING COUNT (*)>1;--no result set means we have no duplicates
 
-Summary for numeric columns in film table:
+- Summary for numeric columns in film table:
 
 SELECT MIN(rental_duration) AS min_rental_duration,
        MAX(rental_duration) AS max_rental_duration,
@@ -47,7 +47,7 @@ SELECT MIN(rental_duration) AS min_rental_duration,
 	   COUNT(*) AS count_rows 
 FROM film;
 
-Summary for non- numeric columns in film table:
+- Summary for non- numeric columns in film table:
 
 SELECT  * FROM film 
 SELECT mode () WITHIN GROUP (ORDER BY title)
