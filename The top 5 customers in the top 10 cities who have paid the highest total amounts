@@ -1,0 +1,28 @@
+The top 5 customers in the top 10 cities who have paid the highest total amounts:
+
+SELECT A.customer_id,
+       A.first_name, 
+       A.last_name, 
+       C.city, 
+       D.country, 
+       SUM (E.amount) AS amount_total
+       FROM customer A
+    INNER JOIN address B ON A.address_id = B.address_id
+		INNER JOIN city C ON B.city_id = C.city_id
+		INNER JOIN country D ON C.country_id = D.country_id
+		INNER JOIN payment E ON A.customer_id = E.customer_id
+		WHERE city IN ('Aurora', 
+                   'Atlixco', 
+                   'Adoni', 
+                   'Dhule (Dhulia)', 
+                   'Khurashiki', 
+                   'Pingxiang',
+                   'Sivas', 
+                   'Celaya', 
+                   'So Leipoldo')
+   		 GROUP BY A.customer_id, 
+                       A.first_name, 
+		                   A.last_name, 
+		                   C.city, 
+		                   D.country
+		 ORDER BY amount_total DESC LIMIT 5;
