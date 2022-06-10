@@ -4,13 +4,13 @@ Duplicate data: Film table:
 
 SELECT film_id, title, 
        release_year, 
-	     rental_duration, 
-	     COUNT(*)
+       rental_duration, 
+       COUNT(*)
 FROM film
 GROUP BY film_id, title, 
          release_year, 
-	       rental_duration
-	       HAVING COUNT (*)>1;--no result set means we have no duplicates
+	 rental_duration
+	 HAVING COUNT (*)>1;--no result set means we have no duplicates
 
 Duplicate data: Customer table
 
@@ -18,49 +18,45 @@ SELECT customer_id,
        store_id, 
        first_name, 
        last_name,
-	     email, 
-	     address_id, 
-	     COUNT (*)
+       email, 
+       address_id, 
+       COUNT (*)
 FROM customer
 GROUP BY customer_id, 
-       store_id, 
-       first_name, 
-       last_name,
-	     email, 
-	     address_id
-HAVING COUNT (*)>1;--no result set means we have no duplicates
+         store_id, 
+         first_name, 
+         last_name,
+         email, 
+         address_id
+         HAVING COUNT (*)>1;--no result set means we have no duplicates
 
 Summary for numeric columns in film table:
 
-SELECT  * FROM film 
 SELECT MIN(rental_duration) AS min_rental_duration,
        MAX(rental_duration) AS max_rental_duration,
-       AVG(rental_duration) AS avg_rental_duration,
-	   
-	   MIN(length) AS min_length,
-       MAX(length) AS max_length,
-       AVG(length) AS avg_length,
-	   
-	   MIN(replacement_cost) AS min_replacement_cost,
+       AVG(rental_duration) AS avg_rental_duration,	   
+          MIN(length) AS min_length,
+          MAX(length) AS max_length,
+          AVG(length) AS avg_length,   
+       MIN(replacement_cost) AS min_replacement_cost,
        MAX(replacement_cost) AS max_replacement_cost,
-       AVG(replacement_cost) AS avg_replacement_cost,
-	   
+       AVG(replacement_cost) AS avg_replacement_cost,   
 	   COUNT(rental_duration) AS count_rental_duration,
 	   COUNT(length) AS count_length,
 	   COUNT(replacement_cost) AS count_replacement_cost,
-	   COUNT(*) AS count_rows
-	   
+	   COUNT(*) AS count_rows 
 FROM film;
 
 Summary for non- numeric columns in film table:
 
 SELECT  * FROM film 
 SELECT mode () WITHIN GROUP (ORDER BY title)
-       AS modal_title,
-	   mode () WITHIN GROUP (ORDER BY description)
+           AS modal_title,
+       mode () WITHIN GROUP (ORDER BY description)
 	   AS modal_description,
-	   mode () WITHIN GROUP (ORDER BY rating)
+       mode () WITHIN GROUP (ORDER BY rating)
 	   AS modal_rating,
 	   COUNT(*) AS count_rows
+ FROM film;
 
 
