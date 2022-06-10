@@ -1,0 +1,20 @@
+Total Earning: 
+
+SELECT	film.title,
+		category.name AS category,
+		film.rating,
+		film.length,
+		film.rental_rate,
+		film.replacement_cost,
+		SUM(payment.amount) AS total_earning		
+FROM film 
+INNER JOIN language ON film.language_id = language.language_id
+INNER JOIN film_category  ON film.film_id = film_category.film_id
+INNER JOIN category ON film_category.category_id = category.category_id
+INNER JOIN inventory ON film.film_id = inventory.film_id
+INNER JOIN rental  ON inventory.inventory_id = rental.inventory_id
+INNER JOIN payment ON rental.rental_id = payment.rental_id
+
+GROUP BY 	film.title, category, length, rating, rental_rate,
+			replacement_cost
+ORDER BY total_earning DESC
